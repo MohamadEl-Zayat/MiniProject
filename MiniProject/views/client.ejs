@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Students' Portfolios</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<%if(error){%>
+  <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <%=error%>
+</div>
+<%}%>
+<div style="background:#1cbb9b">
+  <form method="POST" action="/client">
+	<div>
+	<%if(pfolios){%>
+  	<% for(var i = 0; i < pfolios.length; i++) {%>
+      PortfolioID: <button type="submit" name="view" value="<%=pfolios[i]._id%>"><%=pfolios[i]._id%></button>
+      <br>
+  		First Name: <%=pfolios[i].firstname%>
+  		<br>
+  		Last Name: <%=pfolios[i].lastname%>
+  		<br>
+  	<% for(var j= 0; j< pfolios[i].works.length; j++){%>
+  		Work: <%= pfolios[i].works[j].work%>
+      <br>
+      <%if(j===1){break;}
+  	}%>
+  	<br>
+  	<%} 
+  	}else{%>
+  		<h1>No available portfolios</h1>
+  	<%}%>
+  	</div>
+    </form>
+
+  	<div>
+	<ul class="pagination">
+	<li><a href="client?page=1">1</a></li>
+	<li><a href="client?page=2">2</a></li>
+	<li><a href="client?page=3">3</a></li>
+	<li><a href="client?page=4">4</a></li>
+	<li><a href="client?page=5">5</a></li>
+	<li><a href="client?page=6">6</a></li>
+	</ul>
+	</div>
+</div>
+  
+<style type="text/css">
+	html{
+		background:#1cbb9b;
+	}
+	ul{
+		align-content: center;
+	}
+  a{
+    color:blue;
+  }
+  .alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+</style>
+
+</body>
+</html>

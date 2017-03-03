@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Portfolio</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Logged in successfully!!</h1>
+<form method="GET" action="/">
+  <input type="submit" class="button" name="logout" value="Log Out">
+</form>
+	<h2>Portfolio:</h2>
+	<br>
+	<form name="pfolioform" method="POST" action="/viewmypfolio">
+	<p>First Name: <%=''+ pfolio.firstname%>  </p>
+	<p>Last Name: <%=''+ pfolio.lastname%> </p>
+	<p><%for(i = 0;i<work.length ; i++){%>
+     <%="Work:" + ' ' + work[i].work + '.'%>
+      <br>
+			<%}%>
+		</p>
+	<div class="input_fields_wrap">
+    <button class="add_field_button">Add More Links</button>
+    <div><input type="text" name="work[]" placeholder="Link">
+    </div>
+    </div>
+    <br>
+	<div class="fields_wrap">
+    <button class="add_screen_shot">Add More Screenshots</button>
+    <div><input type="file" name="scrnshot[]" accept="image/*" placeholder="Screenshot">
+    </div>
+	</div>
+	<br>
+	 <input class="button" type="submit" value="Done">
+	 <br>
+	 <br>
+
+</form>
+	<style type="text/css">
+		html{
+			background:#1cbb9b;
+		}
+		u-form-group{
+  width:100%;
+  margin-bottom: 10px;
+}
+h2{
+	font-weight:bolder;
+	font-size:22px;
+}
+
+p{
+	font-weight:bold;
+	font-size:18px;
+}
+
+.button{
+  width:20%;
+  background-color: #1CB94E;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+	</style>
+	<script type="text/javascript">
+	$(document).ready(function() {
+    var max_fields      = 100; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var wrapperr		= $(".fields_wrap");
+    var add_button      = $(".add_field_button"); //Add button ID
+    var add_screenshot  = $(".add_screen_shot");
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div><input type="text" name="work[]"/ placeholder="Link"><a href="#" class="remove_field">Remove</a></div>'); //add input box
+        }
+    });
+
+    var y = 1;
+    $(add_screenshot).click(function(e){
+    	e.preventDefault();
+    	if(y<max_fields){
+    		y++;
+    		$(wrapperr).append('<div><input type="file" name="scrnshot[]" accept="image/*" placeholder="Screenshot"/><a href="#" class="remove_field">Remove</a></div>');
+    	}
+    });
+    
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+      $(wrapperr).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); y--;
+    })
+
+});
+</script>
+</body>
+
+</html>

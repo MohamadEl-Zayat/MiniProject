@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>Portfolio:</h2>
+	<br>
+	<form name="pfolioform" method="POST" action="/viewmypfolio">
+	<p>First Name: <%=''+ pfolio.firstname%>  </p>
+	<p>Last Name: <%=''+ pfolio.lastname%> </p>
+	<p><%for(i = 0;i<work.length ; i++){%>
+		 <%="Work:" + ' ' + work[i].work + '.'%>
+			<br>
+			<%}%>
+		</p>
+		<br>
+		<br>
+		<input type="button" class="button" onclick="window.location.href='/client'" value="Back To Summary">
+		<style type="text/css">
+			html{
+			background:#1cbb9b;
+		}
+		u-form-group{
+  width:100%;
+  margin-bottom: 10px;
+}
+h2{
+	font-weight:bolder;
+	font-size:22px;
+}
+
+p{
+	font-weight:bold;
+	font-size:18px;
+}
+.button{
+  width:20%;
+  background-color: #1CB94E;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 14px 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+		</style>
+</body>
+</html>
